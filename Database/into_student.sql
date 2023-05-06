@@ -9,7 +9,7 @@ insert into student(registration, name, email, phone, session, dept, password)
 insert into student(registration, name, email, phone, session, dept, password) 
 	values('2019331009', 'Tahsinul Islam', 'tahsin2000@gmail.com', '01717223347', '2019-20', 'Comp. Sci.', 'tahsin2002');
 
-select * from student;
+
 
 insert into student(registration, name, email, phone, session, dept, password)
 	values('2019331011', 'Nihan Ali', 'nihan2000@gmail.com', '01717223348', '2019-20', 'Comp. Sci.', 'nihan2002');
@@ -21,3 +21,4 @@ insert into student(registration, name, email, phone, session, dept, password)
 	values('2019331019', 'Rigan Mahmud Chowdhury', 'rigan2000@gmail.com', '01717223351', '2019-20', 'Comp. Sci.', 'rigan2002');
 insert into student(registration, name, email, phone, session, dept, password)
 	values('2019331065', 'Naimul Haque Nahin', 'nahin2000@gmail.com', '01717223352', '2019-20', 'Comp. Sci.', 'nahin2002');
+select * from student;
