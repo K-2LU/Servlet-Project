@@ -5,13 +5,14 @@ body {
     padding: 0%;
 }
 
+
 .container {
     display: flex;
     margin-left: 20%;
     margin-top: 4%;
     padding: 0%;
-    height: 470px;
-    width: 750px;
+    height: 770px;
+    width: 1150px;
     box-shadow: 10px 5px 10px 5px gray;
 }
 
@@ -91,3 +92,196 @@ body {
     background-color: #005E80;
 }
 
+.message    {
+    margin-top: 5%;
+    color: red
+}body {
+    font-family: Helvetica;
+    /* background-color: #f2f2f2; */
+    margin: 0%;
+    padding: 0%;
+}
+
+
+.container {
+    display: flex;
+    margin-left: 20%;
+    margin-top: 4%;
+    padding: 0%;
+    height: 770px;
+    width: 1150px;
+    box-shadow: 10px 5px 10px 5px gray;
+}
+
+.container .left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    background-color: #8FBC8F;
+    text-align: center;
+}
+
+.container .left img {
+    height: 200px;
+    width: 200px;
+    margin: 0%;
+    padding: 0%;
+
+}
+
+.container .left h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.container .left p {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 30px;
+}
+
+.container .right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    background-color: white;
+    text-align: center;
+
+}
+
+.container .right form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 100px;
+    padding-bottom: 100px;
+}
+
+.container .right  form h2 {
+    font-size: 24px;
+    padding-bottom: 30px;
+}
+
+.container .right form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.container .right form button {
+    background-color: #8FBC8F;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.container .right form button:hover {
+    background-color: #005E80;
+}
+
+.message    {
+    margin-top: 5%;
+    color: red
+}body {
+    font-family: Helvetica;
+    /* background-color: #f2f2f2; */
+    margin: 0%;
+    padding: 0%;
+}
+
+
+.container {
+    display: flex;
+    margin-left: 20%;
+    margin-top: 4%;
+    padding: 0%;
+    height: 770px;
+    width: 1150px;
+    box-shadow: 10px 5px 10px 5px gray;
+}
+
+.container .left {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    background-color: #8FBC8F;
+    text-align: center;
+}
+
+.container .left img {
+    height: 200px;
+    width: 200px;
+    margin: 0%;
+    padding: 0%;
+
+}
+
+.container .left h1 {
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+.container .left p {
+    font-size: 18px;
+    line-height: 1.5;
+    margin-bottom: 30px;
+}
+
+.container .right {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    background-color: white;
+    text-align: center;
+
+}
+
+.container .right form {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 100px;
+    padding-bottom: 100px;
+}
+
+.container .right  form h2 {
+    font-size: 24px;
+    padding-bottom: 30px;
+}
+
+.container .right form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.container .right form button {
+    background-color: #8FBC8F;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.container .right form button:hover {
+    background-color: #005E80;
+}
