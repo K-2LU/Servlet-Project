@@ -50,7 +50,8 @@ public class loginRedirect extends HttpServlet {
 						System.out.println(t);
 												
 						if (t.equals("admin"))	{
-								RequestDispatcher rd = request.getRequestDispatcher("AdminPage.jsp");
+								RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
+								request.setAttribute("uid", n);
 								rd.forward(request, response);
 						}else if(t.equals("student")){
 							RequestDispatcher rd = request.getRequestDispatcher("welcome.jsp");
