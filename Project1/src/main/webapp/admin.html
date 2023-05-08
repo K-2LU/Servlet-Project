@@ -2,38 +2,250 @@
 <html>
 
 <head>
-    <title>My Web Page</title>
+    <title>My Webpage</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="adstyle.css">
 </head>
 
 <body>
-    <div id="sidebar">
-        <h2>My Web Page</h2>
-        <div class="admininfo">
-            <ul>
-                <li> 00101 </li>
-                <li style="font-size: larger;"> <strong>Name</strong>  </li>
-                <li>example@example.com</li>
-                <li>Phone: 123-456-7890</li>
-            </ul>
-        </div>
-        <div class="logout">
-            <form action="">
-                <button>logout</button>
-            </form>
-        </div>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2" id="left-sidebar">
+                <!--  <div class="logo">Google Drive</div> -->
+                <div class="logo">
+                    <img src="sust.png" alt="SUST Logo" style="max-width: 70%;">
+                </div>
+                <div class="user-info">
+                    <p>John Doe</p>
+                    <p>johndoe@gmail.com</p>
+                </div>
+                <button class="active"><i class="glyphicon glyphicon-folder-open"></i>&nbsp; Current Courses</button>
+                <button><i class="glyphicon glyphicon-star"></i>&nbsp; Current Students</button>
+                <hr>
+                <button><i class="glyphicon glyphicon-plus"></i>&nbsp; Add New course</button>
+                <button><i class="glyphicon glyphicon-folder-close"></i>&nbsp; Add New Student</button>
+                <style>
+                </style>
+                <button class="log"><i class="glyphicon glyphicon-log-out"></i>&nbsp; Logout</button>
+            </div>
+            <div class="col-md-10">
+                <div id="topbar">
 
-    </div>
-    <div id="content">
-        <h1>Welcome to my web page</h1>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet urna id nulla consectetur vestibulum a
-            vel purus. Praesent nec enim vel velit euismod aliquam eu eget sapien. Vestibulum quis ipsum nec nibh
-            pharetra malesuada. Aenean blandit diam ipsum, in ultricies ipsum bibendum sit amet. Suspendisse potenti.
-            Morbi consectetur fermentum elit eget feugiat. Fusce euismod elementum velit et volutpat. Praesent nec
-            rutrum justo. Donec eleifend urna lectus, at lobortis justo congue id. Vivamus malesuada tristique nunc, non
-            posuere risus venenatis vel.</p>
-    </div>
-    
+                </div>
+                <div id="main-content">
+                    <div class="main-subcontenet">
+
+                    </div>
+                    <style>
+                        p {
+                            padding-top: 20px;
+                            padding-bottom: 10px;
+                            padding-left: 10px;
+                        }
+                    </style>
+                    <p style="font-size: large;" class="par">Current Courses</p>
+                    <style>
+                        table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            margin-top: 0%;
+                        }
+
+                        th,
+                        td {
+                            padding: 8px;
+                            text-align: center;
+                            border-bottom: 1px solid #ddd;
+                        }
+
+                        tr : hover {
+                            background-color: #f5f5f5;
+                        }
+
+
+                        thead {
+                            background-color: #c0afde;
+                            color: #fff;
+                        }
+
+                        .table-responsive {
+                            max-height: 70vh;
+                            overflow-y: auto;
+                        }
+                    </style>
+                    <div class="table-responsive">
+                        <style>
+                            .table-responsive {
+                                padding: 10px;
+                            }
+                        </style>
+                        <table class="table table-striped table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                    <th>Email</th>
+                                    <th>Name</th>
+                                    <th>Age</th>
+                                    <th>Gender</th>
+                                    <th>Email</th>
+
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>John Doe</td>
+                                    <td>30</td>
+                                    <td>Male</td>
+                                    <td>johndoe@gmail.com</td>
+                                    <td>John Doe</td>
+                                    <td>30</td>
+                                    <td>Male</td>
+                                    <td>johndoe@gmail.com</td>
+                                </tr>
+                                <tr>
+                                    <td>Jane Smith</td>
+                                    <td>25</td>
+                                    <td>Female</td>
+                                    <td>janesmith@gmail.com</td>
+                                    <td>John Doe</td>
+                                    <td>30</td>
+                                    <td>Male</td>
+                                    <td>johndoe@gmail.com</td>
+                                </tr>
+                                <tr>
+                                    <td>Bob Johnson</td>
+                                    <td>40</td>
+                                    <td>Male</td>
+                                    <td>bjohnson@gmail.com</td>
+                                    <td>John Doe</td>
+                                    <td>30</td>
+                                    <td>Male</td>
+                                    <td>johndoe@gmail.com</td>
+                                </tr>
+                                <tr>
+                                    <td>Sara Lee</td>
+                                    <td>22</td>
+                                    <td>Female</td>
+                                    <td>saralee@gmail.com</td>
+                                    <td>John Doe</td>
+                                    <td>30</td>
+                                    <td>Male</td>
+                                    <td>johndoe@gmail.com</td>
+                                </tr>
+                                <tr>
+                                    <td>Tom Brown</td>
+                                    <td>45</td>
+                                    <td>Male</td>
+                                    <td>tombrown@gmail.com</td>
+                                    <td>John Doe</td>
+                                    <td>30</td>
+                                    <td>Male</td>
+                                    <td>johndoe@gmail.com</td>
+                                </tr>
+                                <tr>
+                                    <td>Tom Brown</td>
+                                    <td>45</td>
+                                    <td>Male</td>
+                                    <td>tombrown@gmail.com</td>
+                                    <td>John Doe</td>
+                                    <td>30</td>
+                                    <td>Male</td>
+                                    <td>johndoe@gmail.com</td>
+                                </tr>
+                                <tr>
+                                    <td>Tom Brown</td>
+                                    <td>45</td>
+                                    <td>Male</td>
+                                    <td>tombrown@gmail.com</td>
+                                    <td>John Doe</td>
+                                    <td>30</td>
+                                    <td>Male</td>
+                                    <td>johndoe@gmail.com</td>
+                                </tr>
+                                <tr>
+                                    <td>Tom Brown</td>
+                                    <td>45</td>
+                                    <td>Male</td>
+                                    <td>tombrown@gmail.com</td>
+                                    <td>John Doe</td>
+                                    <td>30</td>
+                                    <td>Male</td>
+                                    <td>johndoe@gmail.com</td>
+                                </tr>
+                                <tr>
+                                    <td>Tom Brown</td>
+                                    <td>45</td>
+                                    <td>Male</td>
+                                    <td>tombrown@gmail.com</td>
+                                    <td>John Doe</td>
+                                    <td>30</td>
+                                    <td>Male</td>
+                                    <td>johndoe@gmail.com</td>
+                                </tr>
+                                <tr>
+                                    <td>Tom Brown</td>
+                                    <td>45</td>
+                                    <td>Male</td>
+                                    <td>tombrown@gmail.com</td>
+                                    <td>John Doe</td>
+                                    <td>30</td>
+                                    <td>Male</td>
+                                    <td>johndoe@gmail.com</td>
+                                </tr>
+                                <tr>
+                                    <td>Tom Brown</td>
+                                    <td>45</td>
+                                    <td>Male</td>
+                                    <td>tombrown@gmail.com</td>
+                                    <td>John Doe</td>
+                                    <td>30</td>
+                                    <td>Male</td>
+                                    <td>johndoe@gmail.com</td>
+                                </tr>
+                                <tr>
+                                    <td>Tom Brown</td>
+                                    <td>45</td>
+                                    <td>Male</td>
+                                    <td>tombrown@gmail.com</td>
+                                    <td>John Doe</td>
+                                    <td>30</td>
+                                    <td>Male</td>
+                                    <td>johndoe@gmail.com</td>
+                                </tr>
+                                <tr>
+                                    <td>Tom Brown</td>
+                                    <td>45</td>
+                                    <td>Male</td>
+                                    <td>tombrown@gmail.com</td>
+                                    <td>John Doe</td>
+                                    <td>30</td>
+                                    <td>Male</td>
+                                    <td>johndoe@gmail.com</td>
+                                </tr>
+                                <tr>
+                                    <td>Tom Brown</td>
+                                    <td>45</td>
+                                    <td>Male</td>
+                                    <td>tombrown@gmail.com</td>
+                                    <td>John Doe</td>
+                                    <td>30</td>
+                                    <td>Male</td>
+                                    <td>johndoe@gmail.com</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+
+                </div>
+            </div>
+        </div>
 </body>
 
 </html>
