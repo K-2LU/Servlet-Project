@@ -9,30 +9,7 @@ body {
     height: 100vh;
 }
 
-#topbar {
-    background-color: #e8eaed;
-    height: 20px;
-    color: #FFFFFF;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 0 20px;
-    margin-bottom: 0px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
 
-#topbar button {
-    background-color: transparent;
-    color: #202124;
-    border: none;
-    font-size: 1.2rem;
-    cursor: pointer;
-}
-
-#topbar button:hover {
-    */ text-decoration: underline;
-    */
-}
 
 #left-sidebar {
     background-color: #e8eaed;
@@ -103,7 +80,7 @@ body {
     background-color: white;
     margin-top: 5%;
     border: round;
-    height: 83h;
+    height: 85%;
     padding-top: 15px;
     align-items: center;
     padding: 0 20px;
