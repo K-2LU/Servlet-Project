@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<%@ page import="com.project1.Admin" %> 
+<%@ page import="com.project1.Student" %> 
 <%@ page import="java.sql.Connection" %> 
 <%@ page import="java.sql.DriverManager" %>
 <%@	page import="java.sql.PreparedStatement" %>
@@ -9,7 +9,8 @@
 <%@	page import="java.sql.SQLException" %>
 <% 
 	String uid = (String)request.getAttribute("uid");
-	Admin ad = new Admin(uid);
+	System.out.println(uid);
+	Student ad = new Student(uid);
 	
 	HttpSession hsession = request.getSession();
 	hsession.setAttribute("uid", ad.getID());
@@ -17,7 +18,7 @@
 	
 
 <head>
-    <title>Admin Home Page</title>
+    <title>Student Home Page</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -48,12 +49,11 @@
                 <div class="buttons">
                     
                 <button class="active"><i class="glyphicon glyphicon-folder-open"></i>&nbsp; Current Courses</button>
-                <button><i class="glyphicon glyphicon-star"></i>&nbsp; Current Students</button>
                 <hr>
                 <form action="addnewcourse.jsp">
-                <button><i class="glyphicon glyphicon-plus"></i>&nbsp; Add New course</button>
+                <button><i class="glyphicon glyphicon-plus"></i>&nbsp; Register for a new course</button>
                  </form>
-                <button><i class="glyphicon glyphicon-folder-close"></i>&nbsp; Add New Student</button>
+
                 
                 </div>
                 <button class="logout-button"><i class="glyphicon glyphicon-log-out"></i>&nbsp; Logout</button>
@@ -109,8 +109,6 @@
                                     <th>Course ID</th>
                                     <th>Course Name</th>
                                     <th>Department</th>
-                                    <th>Instructor ID</th>
-                                    <th>Instructor Name</th>
                                     <th>Credit</th>
                                 </tr>
                             </thead>
@@ -128,24 +126,23 @@
 			    		try {
 			    			Class.forName("com.mysql.cj.jdbc.Driver");
 			    			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/university", "root", "admin");
-			    			ps = con.prepareStatement("SELECT * from course, teaches, teacher WHERE teacher_id = id AND teaches.course_id = course.course_id");
+			    			ps = con.prepareStatement("select * from takes, course where takes.course_id = course.course_id and student_id = ?");
+			    			ps.setString(1, uid);
 			    			
 			    			rs = ps.executeQuery();
 			    			while(rs.next())	{
 			    			
-				    			course_id = rs.getString("course_id");
-				    			course_name = rs.getString("course_name");
-				    			dept = rs.getString("dept");
-				    			// credit = Integer.parseString(rs.getInt("credit"));
+				    			course_id = rs.getString("course.course_id");
+				    			course_name = rs.getString("course.course_name");
+				    			dept = rs.getString("course.dept");
+				    			//credit = Integer.parseString(rs.getInt("course.credit"));
 				    			
 				    			%>
 				    			<tr>
-				    			<td><%= rs.getString("course_id") %> </td>
-				    			<td><%= rs.getString("course_name")  %> </td>
-				    			<td><%= rs.getString("dept")  %> </td>
-				    			<td><%= rs.getString("teacher_id") %> </td>
-				    			<td><%= rs.getString("teacher.name") %> </td>
-				    			<td><%= String.valueOf(rs.getObject("credit")) %>
+				    			<td><%= rs.getString("course.course_id") %> </td>
+				    			<td><%= rs.getString("course.course_name")  %> </td>
+				    			<td><%= rs.getString("course.dept")  %> </td>
+				    			<td><%= rs.getInt("course.credit") %> </td>
 				    			</tr>
 			    			<%}
 			    			
