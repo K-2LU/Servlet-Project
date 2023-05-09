@@ -12,7 +12,7 @@ create table student(
     );
     
 create table teacher(
-	id varchar(10) primary key,
+	id varchar(10) primary key,	
     name varchar(64),
     email varchar(64),
     phone varchar(20),
@@ -56,3 +56,5 @@ create table login(
     password varchar(20),
     user_type varchar(10)
 )
+
+select * from teacher, teaches;
