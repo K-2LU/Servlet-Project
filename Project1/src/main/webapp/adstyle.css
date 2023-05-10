@@ -89,7 +89,7 @@ li  {
     border: none;
     font-size: 1.5rem;
     font-weight: 500;
-    font-family: Tahoma, Geneva, Verdana, sans-serif;
+    font-family: Helvetica, sans-serif;
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -120,9 +120,12 @@ li  {
 
 #left-sidebar button.active,
 #left-sidebar button.active:hover {
-    background-color: #f1f3f4;
+    font-family: Helvetica, sans-serif;
+    background-color: #f1f1f1;
     color: #202124;
     cursor: default;
+    border: round;
+    border-radius: 20px;
 }
 
 #left-sidebar hr {

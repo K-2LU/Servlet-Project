@@ -11,7 +11,9 @@
 <%@	page import="java.sql.SQLException" %>
 
 <%
-	String uid = (String) session.getAttribute("uid");
+	String uid = (String) request.getAttribute("uid");
+	HttpSession hsession = request.getSession();
+	//String uid = (String) hsession.getAttribute("uid");
 	Admin ad = new Admin(uid);
 	
 	System.out.println(ad.getName());
@@ -49,17 +51,21 @@
                 
                 <div class="buttons">
                     
-                <button class="active"><i class="glyphicon glyphicon-folder-open"></i>&nbsp; Current Courses</button>
-                <button><i class="glyphicon glyphicon-star"></i>&nbsp; Current Students</button>
-                <hr>
-                <form action="addnewcourse.jsp">
-                <button><i class="glyphicon glyphicon-plus"></i>&nbsp; Add New course</button>
+	                <button class="active"><i class="glyphicon glyphicon-folder-open"></i>&nbsp; Current Courses</button>
+	                <button><i class="glyphicon glyphicon-star"></i>&nbsp; Current Students</button>
+	                <hr>
+                <form action="AddNewCourse" method="post">
+                	<input type="hidden" name="uid" value= <%= ad.getID() %> >
+                	<button><i class="glyphicon glyphicon-plus"></i>&nbsp; Add New course</button>
                  </form>
-                <button><i class="glyphicon glyphicon-folder-close"></i>&nbsp; Add New Student</button>
+	                <button><i class="glyphicon glyphicon-folder-close"></i>&nbsp; Add New Student</button>
                 
-                         </div>
+				</div>
+                <form action=index.jsp>
                 <button class="logout-button"><i class="glyphicon glyphicon-log-out"></i>&nbsp; Logout</button>
+            	</form>            
             </div>
+            
             <div class="col-md-10">
                 <div id="main-content">
                     <div class="form-container">

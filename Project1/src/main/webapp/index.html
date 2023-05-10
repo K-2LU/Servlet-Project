@@ -1,36 +1,114 @@
 <!DOCTYPE html>
 <html>
+<%@ page import="com.project1.Admin" %> 
+<%@ page import="java.sql.Connection" %> 
+<%@ page import="java.sql.DriverManager" %>
+<%@	page import="java.sql.PreparedStatement" %>
+<%@	page import="java.sql.ResultSet" %>
+<%@	page import="java.sql.SQLException" %>
+<% 
+	String uid = (String)request.getAttribute("uid");
+	Admin ad = new Admin(uid);
+%>
 
 <head>
-    <title>Login Page</title>
-    <link rel="stylesheet" href="style.css">
+    <title>My Web Page</title>
+    <link rel="stylesheet" href="adstyle.css">
 </head>
 
 <body>
-    <div class="container">
-        <div class="left">    
-            <img src="./images/logo.png" >
+    <div id="sidebar">
+        <h2>My Web Page</h2>
+        <div class="admininfo">
+            <ul>
+                <li> <%= ad.getID() %> </li>
+                <li style="font-size: larger;"> <strong> <%= ad.getName() %>  </strong>  </li>
+                <li><%= ad.getEmail() %></li>
+                <li><%= ad.getPhone() %></li>
+            </ul>
         </div>
-        <div class="right">
-	        
-            <form action="loginRedirect" method="post">
-                <h2>Welcome to Servlet Project</h2>
-                <input type="text" placeholder="Username" align="center" name="txtName">
-                <input type="password" placeholder="Password" name="txtPass">
-           
-				
-                <div>
-                    <button type="submit">Login</button>
-                </div>
-                     <br>
-                <div class="message">
-                <% if (request.getAttribute("errorMessage") != null) { %>
-				<div style="color:red"> <%= request.getAttribute("errorMessage") %> </div>
-				<% } %>	
-            </div>
+        <div class="logout">
+            <form action="logOutServlet">
+                <button>logout</button>
             </form>
         </div>
+
     </div>
+    <div id="content">
+        <h1>Welcome to my web page</h1>
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet urna id nulla consectetur vestibulum a
+            vel purus. Praesent nec enim vel velit euismod aliquam eu eget sapien. Vestibulum quis ipsum nec nibh
+            pharetra malesuada. Aenean blandit diam ipsum, in ultricies ipsum bibendum sit amet. Suspendisse potenti.
+            Morbi consectetur fermentum elit eget feugiat. Fusce euismod elementum velit et volutpat. Praesent nec
+            rutrum justo. Donec eleifend urna lectus, at lobortis justo congue id. Vivamus malesuada tristique nunc, non
+            posuere risus venenatis vel.</p>
+            
+            <table>
+            <tr>
+            <th> Course ID. </th>
+            <th> Course Name </th>
+            <th> Department </th>
+            <th> Instructor ID </th>
+            <th> Instructor Name </th>
+            <th> Credit </th>
+            </tr>
+            
+            <% 
+	        	PreparedStatement ps;	
+	        	Connection con;
+	        	ResultSet rs;
+
+	        	String course_name;
+	        	String course_id;
+	        	String dept;
+	        	String credit;
+	        	
+	    		try {
+	    			Class.forName("com.mysql.cj.jdbc.Driver");
+	    			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/university", "root", "admin");
+	    			ps = con.prepareStatement("SELECT * from course, teaches, teacher WHERE teacher_id = id AND teaches.course_id = course.course_id");
+	    			
+	    			rs = ps.executeQuery();
+	    			while(rs.next())	{
+	    			
+		    			course_id = rs.getString("course_id");
+		    			course_name = rs.getString("course_name");
+		    			dept = rs.getString("dept");
+		    			// credit = Integer.parseString(rs.getInt("credit"));
+		    			
+		    			%>
+		    			<tr>
+		    			<td><%= rs.getString("course_id") %> </td>
+		    			<td><%= rs.getString("course_name")  %> </td>
+		    			<td><%= rs.getString("dept")  %> </td>
+		    			<td><%= rs.getString("teacher_id") %> </td>
+		    			<td><%= rs.getString("teacher.name") %> </td>
+		    			<td><%= String.valueOf(rs.getObject("credit")) %>
+		    			</tr>
+	    			<%}
+	    			
+	    		} catch (ClassNotFoundException e) {
+	    			// TODO Auto-generated catch block
+	    			e.printStackTrace();
+	    		} catch (SQLException e) {
+	    			// TODO Auto-generated catch block
+	    			e.printStackTrace();
+	    		}
+            %>
+			
+			<%
+   HttpSession hsession = request.getSession();
+   hsession.setAttribute("uid", ad.getID());
+	%>
+			
+			<form action="addnewcourse.jsp">
+			<input type="hidden" name = "uid" value= <%= ad.getID() %> > %> >
+			<button type="submit">Add new course</button>
+			</form>
+            
+            </table>
+    </div>
+    
 </body>
 
 </html>

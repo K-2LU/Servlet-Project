@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html>
 
-<%@ page import="com.project1.Student" %> 
+<%@ page import="com.project1.Teacher" %> 
 <%@ page import="java.sql.Connection" %> 
 <%@ page import="java.sql.DriverManager" %>
 <%@	page import="java.sql.PreparedStatement" %>
 <%@	page import="java.sql.ResultSet" %>
 <%@	page import="java.sql.SQLException" %>
-<% 
-	String uid = (String)request.getAttribute("uid");
-	System.out.println(uid);
-	Student ad = new Student(uid);
+<% 		
+	String uid = request.getParameter("uid");
+	String courseID = request.getParameter("courseID");
 	
-	HttpSession hsession = request.getSession();
-	hsession.setAttribute("uid", ad.getID());
+	System.out.println(uid + " teacher");
+	
+	Teacher ad = new Teacher(uid);
+	System.out.println(ad.getID());
 %>
 	
 
 <head>
-    <title>Student Home Page</title>
+    <title>Teacher Home Page</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -50,21 +51,11 @@
                     
                 <button class="active"><i class="glyphicon glyphicon-folder-open"></i>&nbsp; Current Courses</button>
                 <hr>
-                <form action="addnewcourse.jsp">
-                <button><i class="glyphicon glyphicon-plus"></i>&nbsp; Register for a new course</button>
-                 </form>
                 </div>
                 <form action=index.jsp>
-                <%
-				   hsession = request.getSession(false);
-				   if (session != null) {
-				       session.invalidate();
-				   }
-				%>
                 <button class="logout-button"><i class="glyphicon glyphicon-log-out"></i>&nbsp; Logout</button>
-            	</form>            
+            	</form>
             </div>
-            
             <div class="col-md-10">
                 <div id="main-content">
                     <style>
@@ -112,11 +103,12 @@
                         </style>
                         <table class="table table-striped table-hover table-bordered">
                             <thead>
-                                <tr>
-                                    <th>Course ID</th>
-                                    <th>Course Name</th>
+                        <tr>
+                                    <th>Registration</th>
+                                    <th>Name</th>
                                     <th>Department</th>
-                                    <th>Credit</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -125,31 +117,35 @@
 			        	Connection con;
 			        	ResultSet rs;
 		
-			        	String course_name;
-			        	String course_id;
+			        	String name;
+			        	String registration;
 			        	String dept;
-			        	String credit;
+			        	String email;
+			        	String phone;
+			        	int courseNo = 1;
 			        	
 			    		try {
 			    			Class.forName("com.mysql.cj.jdbc.Driver");
 			    			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/university", "root", "admin");
-			    			ps = con.prepareStatement("select * from takes, course where takes.course_id = course.course_id and student_id = ?");
-			    			ps.setString(1, uid);
-			    			
+			    			ps = con.prepareStatement("select * from takes, student where takes.student_id = registration and course_id = ?");
+			    			ps.setString(1, courseID);
 			    			rs = ps.executeQuery();
 			    			while(rs.next())	{
 			    			
-				    			course_id = rs.getString("course.course_id");
-				    			course_name = rs.getString("course.course_name");
-				    			dept = rs.getString("course.dept");
-				    			//credit = Integer.parseString(rs.getInt("course.credit"));
+				    			registration = rs.getString("registration");
+				    			name = rs.getString("student.name");
+				    			dept = rs.getString("student.dept");
+				    			email = rs.getString("email");
+				    			phone = rs.getString("phone");
+				    			// credit = Integer.parseString(rs.getInt("credit"));
 				    			
 				    			%>
 				    			<tr>
-				    			<td><%= rs.getString("course.course_id") %> </td>
-				    			<td><%= rs.getString("course.course_name")  %> </td>
-				    			<td><%= rs.getString("course.dept")  %> </td>
-				    			<td><%= rs.getInt("course.credit") %> </td>
+				    			<td><%= rs.getString("registration") %> </td>
+				    			<td><%= rs.getString("student.name")  %> </td>
+				    			<td><%= rs.getString("dept")  %> </td>
+				    			<td><%= rs.getString("phone") %></td>
+				    			<td> <%= rs.getString("email") %></td>
 				    			</tr>
 			    			<%}
 			    			

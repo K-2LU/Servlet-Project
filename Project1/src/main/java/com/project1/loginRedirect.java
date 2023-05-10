@@ -7,6 +7,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import com.project1.*;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -50,14 +51,18 @@ public class loginRedirect extends HttpServlet {
 						System.out.println(t);
 												
 						if (t.equals("admin"))	{
-								RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
-								request.setAttribute("uid", n);
-								rd.forward(request, response);
-						}else if(t.equals("student")){
-							RequestDispatcher rd = request.getRequestDispatcher("welcome.jsp");
+							RequestDispatcher rd = request.getRequestDispatcher("admin.jsp");
+							request.setAttribute("uid", n);
+							rd.forward(request, response);
+						}	else if(t.equals("student")){
+							RequestDispatcher rd = request.getRequestDispatcher("student.jsp");
+							request.setAttribute("uid", n);
+							rd.forward(request, response);
+						}	else if(t.equals("teacher")){
+							RequestDispatcher rd = request.getRequestDispatcher("teacher.jsp");
+							request.setAttribute("uid", n);
 							rd.forward(request, response);
 						}
-					
 					}	else	{			
 						request.setAttribute("errorMessage", "Wrong password!");
 						RequestDispatcher dispatcher = request.getRequestDispatcher("index.jsp");

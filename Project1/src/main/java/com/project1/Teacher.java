@@ -1,30 +1,32 @@
 package com.project1;
 
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class Admin {
+public class Teacher {
 	
 	String name;
 	String id;
 	String email;
 	String phone;
+	String dept;
 	String password;
 	
 	PreparedStatement ps;	
 	Connection con;
 	ResultSet rs;
 	
-	public Admin(String id)	{
+	public Teacher(String id)	{
 
 		try {
 			
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/university", "root", "admin");
-			ps = con.prepareStatement("SELECT * from admin where id = ?");
+			ps = con.prepareStatement("SELECT * from teacher where id = ?");
 			ps.setString(1, id);
 			rs = ps.executeQuery();
 			rs.next();
@@ -33,9 +35,8 @@ public class Admin {
 			name = rs.getString("name");
 			email = rs.getString("email");
 			phone = rs.getString("phone");
+			dept = rs.getString("dept");
 			password = rs.getString("password");
-			
-			System.out.println(name);
 			
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
@@ -63,8 +64,10 @@ public class Admin {
 		        } catch (SQLException e) { /* Ignored */}
 		    }
 		}
-	}	
-	
+		
+		
+	}
+
 	public String getID()	{
 		return id;
 	}
@@ -81,7 +84,12 @@ public class Admin {
 		return phone;
 	}
 	
+	public String getDept()	{
+		return dept;
+	}
+
 	public String getPass() {
 		return password;
 	}
+
 }
