@@ -6,3 +6,4 @@ insert into login(id, password, user_type) value('10102', 'ayeshamam', 'teacher'
 insert into login(id, password, user_type) value('10103', 'mishalsir', 'teacher');
 
 insert into login(id, password, user_type) value('00101', 'mdmasum', 'admin');
+select * from login;

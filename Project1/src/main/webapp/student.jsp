@@ -89,14 +89,14 @@
                             border-bottom: 1px solid #ddd;
                         }
 
-                        tr : hover {
+                        tr :hover {
                             background-color: #f5f5f5;
                         }
 
 
                         thead {
                             background-color: #c0afde;
-                            color: #fff;
+                            color: #1b1919;
                         }
 
                         .table-responsive {
