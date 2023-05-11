@@ -9,10 +9,8 @@
 <%@	page import="java.sql.SQLException" %>
 <% 
 	String uid = (String)request.getAttribute("uid");
+	System.out.println(uid);
 	Admin ad = new Admin(uid);
-	
-	HttpSession hsession = request.getSession();
-	hsession.setAttribute("uid", ad.getID());
 	System.out.println(ad.getID());
 %>
 	

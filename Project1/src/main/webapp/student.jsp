@@ -50,18 +50,15 @@
                     
                 <button class="active"><i class="glyphicon glyphicon-folder-open"></i>&nbsp; Current Courses</button>
                 <hr>
-                <form action="addnewcourse.jsp">
-                <button><i class="glyphicon glyphicon-plus"></i>&nbsp; Register for a new course</button>
+                <form action="RegisterNewCourse" method="post">
+                
+				    <input type="hidden" name ="uid" value= <%= ad.getID() %> >
+                	<button><i class="glyphicon glyphicon-plus"></i>&nbsp; Register for a new course</button>
+                 
                  </form>
                 </div>
                 <form action=index.jsp>
-                <%
-				   hsession = request.getSession(false);
-				   if (session != null) {
-				       session.invalidate();
-				   }
-				%>
-                <button class="logout-button"><i class="glyphicon glyphicon-log-out"></i>&nbsp; Logout</button>
+                	<button class="logout-button"><i class="glyphicon glyphicon-log-out"></i>&nbsp; Logout</button>
             	</form>            
             </div>
             
@@ -89,14 +86,14 @@
                             border-bottom: 1px solid #ddd;
                         }
 
-                        tr :hover {
+                        tr : hover {
                             background-color: #f5f5f5;
                         }
 
 
                         thead {
                             background-color: #c0afde;
-                            color: #1b1919;
+                            color: #fff;
                         }
 
                         .table-responsive {

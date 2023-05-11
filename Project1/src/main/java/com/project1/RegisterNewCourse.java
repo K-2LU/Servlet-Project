@@ -20,11 +20,9 @@ public class RegisterNewCourse extends HttpServlet {
 		// TODO Auto-generated method stub
 //		doGet(request, response);
 		String uid = request.getParameter("uid");
-		String courseID = request.getParameter("courseID");
-		
-		RequestDispatcher rd = request.getRequestDispatcher("teacherViewStudents.jsp");
+		System.out.println("registerServlet: " + uid);
+		RequestDispatcher rd = request.getRequestDispatcher("registerNewCourse.jsp");
 		request.setAttribute("uid", uid);
-		request.setAttribute("courseID", courseID);
 		rd.forward(request, response);
 	}
 

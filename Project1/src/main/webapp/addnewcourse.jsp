@@ -12,7 +12,6 @@
 
 <%
 	String uid = (String) request.getAttribute("uid");
-	HttpSession hsession = request.getSession();
 	//String uid = (String) hsession.getAttribute("uid");
 	Admin ad = new Admin(uid);
 	
@@ -69,42 +68,77 @@
             <div class="col-md-10">
                 <div id="main-content">
                     <div class="form-container">
-                        <h2>Enter Course Credentials</h2>
-                        <form>
-                          <div class="form-group">
-                            <label for="name">Course ID:</label>
-                            <input type="text" id="courseID" name="courseID" required>
-                          </div>
-                      
-                          <div class="form-group">
-                            <label for="courseName">Course Name:</label>
-                            <input type="text" id="courseName" name="courseName" required>
-                          </div>
+            <h2>Enter Course Credentials</h2>
+            <form action="AdminAddNewCourse" method="post">
+              <style>
+                .form-inline {
+                  padding-top: 3%;
+                  padding-bottom: 3%;
+                }
 
-                          <div class="form-group">
-                            <label for="courseName">Department Name:</label>
-                            <input type="text" id="deptName" name="dept" required>
-                          </div>
-                        
-                          <div class="form-group">
-                            <label for="credit">Credit:</label>
-                            <input type="text" id="credit" name="credit" required>
-                          </div>
+                .form-inline input {
+                  padding-left: 10%;
+                }
+              </style>
+              <div class="form-inline">
+                <style>
+                  .lb1 {
+                    padding-right: 70px;
+                  }
+                </style>
+                <label for="name" class="lb1">Course ID:</label>
+                <input type="text" id="courseID" name="courseID" class="form-control" required>
+              </div>
 
-                          <div class="form-group">
-                            <label for="semester">Course Semester:</label>
-                            <input type="text" id="semester" name="semester" required>
-                          </div>
+              <div class="form-inline">
+                <style>
+                  .lb2 {
+                    padding-right: 47px;
+                  }
+                </style>
+                <label for="courseName" class="lb2">Course Name:</label>
+                <input type="text" id="courseName" name="courseName" class="form-control" required>
+              </div>
 
-                          <div class="form-group">
-                            <label for="courseName">Course Year:</label>
-                            <input type="text" id="courseYear" name="year" required>
-                          </div>
-                      
-                          <button type="submit">Send</button>
-                        </form>
-                      </div>
-                      
+              <div class="form-inline">
+                <style>
+                  .lb3 {
+                    padding-right: 18px;
+                  }
+                </style>
+                <label for="courseName" class="lb3">Department Name:</label>
+                <input type="text" id="deptName" name="dept" class="form-control" required>
+              </div>
+              <div class="form-inline">
+                <style>
+                  .lb7 {
+                    padding-right: 10px;
+                  }
+                </style>
+                <label for="credit" class="lb7">Assigned Teachers ID:</label>
+                <input type="text" id="credit" name="instructorID" class="form-control" required>
+              </div>
+              <div class="form-inline">
+                <style>
+                  .lb4 {
+                    padding-right: 97px;
+                  }
+                </style>
+                <label for="credit" class="lb4">Credit:</label>
+                <input type="text" id="credit" name="credit" class="form-control" required>
+              </div>
+
+              <style>
+                .btnn {
+                  width: 30%;
+                  margin-left: 26%;
+                }
+              </style>
+              <input type="hidden" name="uid" value=<%= ad.getID() %> >
+              <button type="submit" class="btnn">Submit</button>
+            </form>
+          </div>
+
                 </div>
             </div>
         </div>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<%@ page import="com.project1.Teacher" %> 
+<%@ page import="com.project1.*" %> 
 <%@ page import="java.sql.Connection" %> 
 <%@ page import="java.sql.DriverManager" %>
 <%@	page import="java.sql.PreparedStatement" %>
@@ -9,17 +9,16 @@
 <%@	page import="java.sql.SQLException" %>
 <% 		
 	String uid = request.getParameter("uid");
-	String courseID = request.getParameter("courseID");
 	
-	System.out.println(uid + " teacher");
+	System.out.println(uid + " student course registration");
 	
-	Teacher ad = new Teacher(uid);
+	Student ad = new Student(uid);
 	System.out.println(ad.getID());
 %>
 	
 
 <head>
-    <title>Teacher Home Page</title>
+    <title>Course Registration</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -65,7 +64,7 @@
                             padding-left: 10px;
                         }
                     </style>
-                    <p style="font-size: large;" class="par">Current Courses</p>
+                    <p style="font-size: large;" class="par"> Course Registration</p>
                     <style>
                         table {
                             width: 100%;
@@ -101,14 +100,15 @@
                                 padding: 10px;
                             }
                         </style>
+                       <form action="StudentNewCourse" method="post">
                         <table class="table table-striped table-hover table-bordered">
                             <thead>
-                        <tr>
-                                    <th>Registration</th>
-                                    <th>Name</th>
+                        <tr>		
+                        			<th> </th>
+                                    <th>Course ID</th>
+                                    <th>Course Name</th>
                                     <th>Department</th>
-                                    <th>Phone</th>
-                                    <th>Email</th>
+                                    <th>Credit</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -117,35 +117,29 @@
 			        	Connection con;
 			        	ResultSet rs;
 		
-			        	String name;
-			        	String registration;
-			        	String dept;
-			        	String email;
-			        	String phone;
-			        	int courseNo = 1;
+			        	String courseID;
 			        	
 			    		try {
+			    			String first = "select * from course where course.course_id not in ";
+			    			String second = "(select course.course_id from student, takes, course where student.registration= ? ";
+			    			String third = "and student.registration = takes.student_id and takes.course_id = course.course_id)";
+			    			
 			    			Class.forName("com.mysql.cj.jdbc.Driver");
 			    			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/university", "root", "admin");
-			    			ps = con.prepareStatement("select * from takes, student where takes.student_id = registration and course_id = ?");
-			    			ps.setString(1, courseID);
+			    			ps = con.prepareStatement(first + second + third);
+			    			ps.setString(1, ad.getID());
 			    			rs = ps.executeQuery();
-			    			while(rs.next())	{
 			    			
-				    			registration = rs.getString("registration");
-				    			name = rs.getString("student.name");
-				    			dept = rs.getString("student.dept");
-				    			email = rs.getString("email");
-				    			phone = rs.getString("phone");
-				    			// credit = Integer.parseString(rs.getInt("credit"));
-				    			
+			    			while(rs.next())	{
+			    				courseID = rs.getString("course_id");
 				    			%>
 				    			<tr>
-				    			<td><%= rs.getString("registration") %> </td>
-				    			<td><%= rs.getString("student.name")  %> </td>
-				    			<td><%= rs.getString("dept")  %> </td>
-				    			<td><%= rs.getString("phone") %></td>
-				    			<td> <%= rs.getString("email") %></td>
+				    				<td> <input type="checkbox" name="tick" value=<%= courseID %>>
+									<label for="vehicle1"></label><br> </td>
+					    			<td><%= rs.getString("course_id") %> </td>
+					    			<td><%= rs.getString("course_name")  %> </td>
+					    			<td><%= rs.getString("dept")  %> </td>
+					    			<td><%= rs.getString("credit") %></td>
 				    			</tr>
 			    			<%}
 			    			
@@ -160,6 +154,9 @@
 			
                             </tbody>
                         </table>
+                        <input type="hidden" name="uid" value=<%= ad.getID()%>>
+                        <button type="submit">Submit</button>
+                       </form>
                     </div>
 
                 </div>
