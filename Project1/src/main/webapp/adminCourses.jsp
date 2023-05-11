@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<%@ page import="com.project1.Student" %> 
+<%@ page import="com.project1.Admin" %> 
 <%@ page import="java.sql.Connection" %> 
 <%@ page import="java.sql.DriverManager" %>
 <%@	page import="java.sql.PreparedStatement" %>
@@ -10,15 +10,13 @@
 <% 
 	String uid = (String)request.getAttribute("uid");
 	System.out.println(uid);
-	Student ad = new Student(uid);
-	
-	HttpSession hsession = request.getSession();
-	hsession.setAttribute("uid", ad.getID());
+	Admin ad = new Admin(uid);
+	System.out.println(ad.getID());
 %>
 	
 
 <head>
-    <title>Student Home Page</title>
+    <title>Admin Home Page</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -47,16 +45,35 @@
                 </div>
                 
                 <div class="buttons">
-                    
+				
+				<form action="AdminRedirect" method="post">
+                	<input type="hidden" name="uid" value= <%= ad.getID() %> >
+                	<button><i class="glyphicon glyphicon-star"></i>&nbsp; Home</button>
+				</form>
+                
                 <button class="active"><i class="glyphicon glyphicon-folder-open"></i>&nbsp; Current Courses</button>
+				
+				<form action="AdminShowStudent" method="post">
+                	<input type="hidden" name="uid" value= <%= ad.getID() %> >
+                    <button ><i class="glyphicon glyphicon-folder-open"></i>&nbsp; Current Students</button>
+                </form>
+                
                 <hr>
-                <form action="addnewcourse.jsp">
-                <button><i class="glyphicon glyphicon-plus"></i>&nbsp; Register for a new course</button>
+                
+                <form action="AddNewCourse" method="post">
+                	<input type="hidden" name="uid" value= <%= ad.getID() %> >
+                	<button><i class="glyphicon glyphicon-plus"></i>&nbsp; Add New course</button>
                  </form>
-
+                 
+                	<form action="AddStudent" method="post">
+                	<input type="hidden" name="uid" value= <%= ad.getID() %> >
+                    <button ><i class="glyphicon glyphicon-folder-open"></i>&nbsp; Add A Student</button>
+                </form>
                 
                 </div>
-                <button class="logout-button"><i class="glyphicon glyphicon-log-out"></i>&nbsp; Logout</button>
+				<form action=index.jsp>
+                	<button class="logout-button"><i class="glyphicon glyphicon-log-out"></i>&nbsp; Logout</button>
+            	</form>
             </div>
             <div class="col-md-10">
                 <div id="main-content">
@@ -109,6 +126,8 @@
                                     <th>Course ID</th>
                                     <th>Course Name</th>
                                     <th>Department</th>
+                                    <th>Instructor ID</th>
+                                    <th>Instructor Name</th>
                                     <th>Credit</th>
                                 </tr>
                             </thead>
@@ -126,23 +145,24 @@
 			    		try {
 			    			Class.forName("com.mysql.cj.jdbc.Driver");
 			    			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/university", "root", "admin");
-			    			ps = con.prepareStatement("select * from takes, course where takes.course_id = course.course_id and student_id = ?");
-			    			ps.setString(1, uid);
+			    			ps = con.prepareStatement("SELECT * from course, teaches, teacher WHERE teacher_id = id AND teaches.course_id = course.course_id");
 			    			
 			    			rs = ps.executeQuery();
 			    			while(rs.next())	{
 			    			
-				    			course_id = rs.getString("course.course_id");
-				    			course_name = rs.getString("course.course_name");
-				    			dept = rs.getString("course.dept");
-				    			//credit = Integer.parseString(rs.getInt("course.credit"));
+				    			course_id = rs.getString("course_id");
+				    			course_name = rs.getString("course_name");
+				    			dept = rs.getString("dept");
+				    			// credit = Integer.parseString(rs.getInt("credit"));
 				    			
 				    			%>
 				    			<tr>
-				    			<td><%= rs.getString("course.course_id") %> </td>
-				    			<td><%= rs.getString("course.course_name")  %> </td>
-				    			<td><%= rs.getString("course.dept")  %> </td>
-				    			<td><%= rs.getInt("course.credit") %> </td>
+				    			<td><%= rs.getString("course_id") %> </td>
+				    			<td><%= rs.getString("course_name")  %> </td>
+				    			<td><%= rs.getString("dept")  %> </td>
+				    			<td><%= rs.getString("teacher_id") %> </td>
+				    			<td><%= rs.getString("teacher.name") %> </td>
+				    			<td><%= String.valueOf(rs.getObject("credit")) %>
 				    			</tr>
 			    			<%}
 			    			

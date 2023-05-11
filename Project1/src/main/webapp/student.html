@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Add a new course</title>
+    <title>Admin Home Page</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
@@ -43,43 +43,56 @@
             </div>
             <div class="col-md-10">
                 <div id="main-content">
-                    <div class="form-container">
-                        <h2>Enter Course Credentials</h2>
-                        <form>
-                          <div class="form-group">
-                            <label for="name">Course ID:</label>
-                            <input type="text" id="courseID" name="courseID" required>
-                          </div>
-                      
-                          <div class="form-group">
-                            <label for="courseName">Course Name:</label>
-                            <input type="text" id="courseName" name="courseName" required>
-                          </div>
+                    <div class="main-subcontenet">
 
-                          <div class="form-group">
-                            <label for="courseName">Department Name:</label>
-                            <input type="text" id="deptName" name="dept" required>
-                          </div>
-                        
-                          <div class="form-group">
-                            <label for="credit">Credit:</label>
-                            <input type="text" id="credit" name="credit" required>
-                          </div>
+                    </div>
+                    <style>
+                        p {
+                            padding-top: 20px;
+                            padding-bottom: 10px;
+                            padding-left: 10px;
+                        }
+                    </style>
+                    <p  class="tab-info">Current Courses</p>
+                    <style>
+                        table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            margin-top: 0%;
+                        }
 
-                          <div class="form-group">
-                            <label for="semester">Course Semester:</label>
-                            <input type="text" id="semester" name="semester" required>
-                          </div>
+                        th,
+                        td {
+                            padding: 8px;
+                            text-align: center;
+                            border-bottom: 1px solid #ddd;
+                        }
 
-                          <div class="form-group">
-                            <label for="courseName">Course Year:</label>
-                            <input type="text" id="courseYear" name="year" required>
-                          </div>
-                      
-                          <button type="submit">Send</button>
-                        </form>
-                      </div>
-                      
+                        tr : hover {
+                            background-color: #f5f5f5;
+                        }
+
+
+                        thead {
+                            background-color: #c0afde;
+                            color: #fff;
+                        }
+
+                        .table-responsive {
+                            max-height: 70vh;
+                            overflow-y: auto;
+                        }
+                    </style>
+                    <div class="table-responsive">
+                        <style>
+                            .table-responsive {
+                                padding: 10px;
+                                border-radius: 1-px;
+                            }
+                        </style>
+
+                    </div>
+
                 </div>
             </div>
         </div>

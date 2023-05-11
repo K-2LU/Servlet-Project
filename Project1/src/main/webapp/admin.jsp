@@ -9,9 +9,10 @@
 <%@	page import="java.sql.SQLException" %>
 <% 
 	String uid = (String)request.getAttribute("uid");
-	System.out.println(uid);
 	Admin ad = new Admin(uid);
-	System.out.println(ad.getID());
+	
+	HttpSession hsession = request.getSession();
+	hsession.setAttribute("uid", ad.getID());
 %>
 	
 
@@ -49,9 +50,8 @@
                 <button class="active"><i class="glyphicon glyphicon-folder-open"></i>&nbsp; Current Courses</button>
                 <button><i class="glyphicon glyphicon-star"></i>&nbsp; Current Students</button>
                 <hr>
-                <form action="AddNewCourse" method="post">
-                	<input type="hidden" name="uid" value= <%= ad.getID() %> >
-                	<button><i class="glyphicon glyphicon-plus"></i>&nbsp; Add New course</button>
+                <form action="addnewcourse.jsp">
+                <button><i class="glyphicon glyphicon-plus"></i>&nbsp; Add New course</button>
                  </form>
                 <button><i class="glyphicon glyphicon-folder-close"></i>&nbsp; Add New Student</button>
                 

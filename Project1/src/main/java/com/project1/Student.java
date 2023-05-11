@@ -21,7 +21,7 @@ public class Student {
 	Connection con;
 	ResultSet rs;
 	
-	public Student(String id)	{
+	Student(String id)	{
 
 		try {
 			
@@ -30,7 +30,6 @@ public class Student {
 			ps = con.prepareStatement("SELECT * from student where registration = ?");
 			ps.setString(1, id);
 			rs = ps.executeQuery();
-			rs.next();
 			
 			registration = rs.getString("registration");
 			name = rs.getString("name");
@@ -68,30 +67,6 @@ public class Student {
 		}
 		
 		
-	}
-
-	public String getID()	{
-		return registration;
-	}
-	
-	public String getName() {
-		return name;
-	}
-	
-	public String getEmail() {
-		return email;
-	}
-	
-	public String getPhone() {
-		return phone;
-	}
-	
-	public String getDept()	{
-		return dept;
-	}
-
-	public String getPass() {
-		return password;
 	}
 
 }

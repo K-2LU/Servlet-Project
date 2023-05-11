@@ -29,7 +29,7 @@ public class Admin {
 			rs = ps.executeQuery();
 			rs.next();
 			
-			this.id = rs.getString("id");
+			id = rs.getString("id");
 			name = rs.getString("name");
 			email = rs.getString("email");
 			phone = rs.getString("phone");
